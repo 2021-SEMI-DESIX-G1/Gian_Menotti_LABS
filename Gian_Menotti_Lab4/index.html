@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilos.css">
+        <title>Laboratorio #4</title>
+    
+<!-- Font Awesome -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+  rel="stylesheet"
+/>
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+  rel="stylesheet"
+/>
+<!-- MDB -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.css"
+  rel="stylesheet"
+/>
+  </head>
+
+   <div class="container">  
+       <main>
+    <div class="py-5 text-center">
+     
+        <h2>Laboratorio #4</h2>
+        <p class="lead">Problemas de aplicación usando JS con HTML</p>
+   </div>
+
+   <p>Número es un palíndromo</p>
+    <form id=problema1 action="#" method="post">
+        <div class="row g-3 align-items-center">
+            <div class="form-outline col-auto">
+              <input type="text" id="text1" class="form-control" aria-describedby="textExample2"/>
+              <label class="form-label" for="formTextExample2">Escribir número</label>
+            </div>
+            <div class="col-auto">
+             <input class="form-control btn btn-primary" type="submit" value="Calcular">
+            </div>         
+        </div> 
+    </form>
+    <p id=ansOne></p>
+
+    <br>
+    <p>Cantidad de caracteres</p>
+    <form id=problema2 action="#" method="post">
+        <div class="row g-3 align-items-center">
+            <div class="form-outline col-auto">
+              <input type="text" id="text2" class="form-control" aria-describedby="textExample2"/>
+              <label class="form-label" for="formTextExample2">Escribir número</label>
+            </div>
+            <div class="col-auto">
+             <input class="form-control btn btn-primary" type="submit" value="Calcular">
+            </div>         
+        </div>
+     
+    </form>
+    <p id=ansTwo></p>
+    <br>
+    <p>Año bisiesto</p>
+    <form id=problema3 action="#" method="post">
+        <div class="row g-3 align-items-center">
+            <div class="form-outline col-auto">
+              <input type="text" id="text3" class="form-control" aria-describedby="textExample2"/>
+              <label class="form-label" for="formTextExample2">Escribir número</label>
+            </div>
+            <div class="col-auto">
+             <input class="form-control btn btn-primary" type="submit" value="Calcular">
+            </div>         
+        </div>
+
+    </form>
+    <p id=ansTree></p>
+    <br>
+    <p>Números primos</p>
+    <form id=problema4 action="#" method="post">
+        <div class="row g-3 align-items-center">
+            <div class="form-outline col-auto">
+              <input type="text" id="text4" class="form-control" aria-describedby="textExample2"/>
+              <label class="form-label" for="formTextExample2">Escribir número</label>
+            </div>
+            <div class="col-auto">
+             <input class="form-control btn btn-primary" type="submit" value="Calcular">
+            </div>         
+        </div>
+    </form>
+    <p id=ansFour></p>
+       </main>
+</div>
+
+
+
+  </body>
+  <!-- MDB -->
+<script
+type="text/javascript"
+src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.5.0/mdb.min.js"
+></script>
+  <script>
+    (() =>{
+      const App ={
+        htmlElements: {
+          FormOne: document.getElementById("problema1"),
+          FormTwo: document.getElementById("problema2"),
+          FormTree: document.getElementById("problema3"),
+          FormFour: document.getElementById("problema4"),
+          ValueTextOne: document.getElementById("text1"),
+          ValueTextTwo: document.getElementById("text2"),
+          ValueTextTree: document.getElementById("text3"),
+          ValueTextFour: document.getElementById("text4"),
+          Resultp1: document.getElementById("ansOne"),
+          Resultp2: document.getElementById("ansTwo"),
+          Resultp3: document.getElementById("ansTree"),
+          Resultp4: document.getElementById("ansFour"),
+        },
+        events: {
+            FormSubmitp1: (event) => {
+                event.preventDefault();
+                const valueTextOne = App.htmlElements.ValueTextOne.value;
+                const problema = "p1"
+                const operationResult = App.utils.operationMap(valueTextOne,problema)
+                const response = `${operationResult.result}`;
+                App.htmlElements.Resultp1.innerText = response;
+            },
+            FormSubmitp2: (event) => {
+                event.preventDefault();
+                const valueTextTwo = App.htmlElements.ValueTextTwo.value;
+                const problema = "p2"
+                const operationResult = App.utils.operationMap(valueTextTwo,problema)
+                const response = `${operationResult.result}`;
+                App.htmlElements.Resultp2.innerText = response;
+            },
+            FormSubmitp3: (event) => {
+                event.preventDefault();
+                const valueTextTree = Number(App.htmlElements.ValueTextTree.value);
+                const problema = "p3"
+                const operationResult = App.utils.operationMap(valueTextTree,problema)
+                const response = `${operationResult.result}`;
+                App.htmlElements.Resultp3.innerText = response;
+            },
+            FormSubmitp4: (event) => {
+                event.preventDefault();
+                const valueTextFour = Number(App.htmlElements.ValueTextFour.value);
+                const problema = "p4"
+                const operationResult = App.utils.operationMap(valueTextFour,problema)
+                const response = `${operationResult.result}`;
+                App.htmlElements.Resultp4.innerText = response;
+            },
+        },
+        init: () =>{
+          App.bindEvents();
+        },
+        bindEvents: () => {
+            App.htmlElements.FormOne.addEventListener('submit', App.events.FormSubmitp1);
+            App.htmlElements.FormTwo.addEventListener('submit', App.events.FormSubmitp2);
+            App.htmlElements.FormTree.addEventListener('submit', App.events.FormSubmitp3);
+            App.htmlElements.FormFour.addEventListener('submit', App.events.FormSubmitp4);
+        },
+        utils: {
+            operationMap: (vari, problema) => {
+                const mapping = {
+                    p1: {
+                        fn: () => {
+                          var t = vari;
+                          var strinvertida=t.split("").reverse().join("");
+                          var strbinaria=parseInt(t).toString(2);
+                          var strbinariainvertida=parseInt(t).toString(2).split("").reverse().join("");
+                          if(t==strinvertida && strbinaria==strbinariainvertida){
+                            return "Numero introducido es un Palindromo de base 10 y base 2";
+                          }else{
+                            return "Numero introducido no es un Palindromo de doble base";
+                          };
+                        },
+                    },
+                    p2: {
+                        fn: () => {
+                          var t= vari;
+                          const answer = {};
+                          for (var i = 0; i < t.length; i++) {
+                            if (answer[t[i]]) {
+                              answer[t[i]]++;
+                            }else{
+                              answer[t[i]]=1;
+                            }
+                          }
+                          return "Cantidad de letras "+JSON.stringify(answer);
+                        },
+                    },
+                    p3: {
+                        fn: () => {
+                          var a = vari;
+                          if(a%2==0){
+                            return "El Año es Bisiesto";
+                          }else{
+                            return "El Año no es Bisiesto";
+                          };
+                        },
+                    },
+                    p4: {
+                        fn: () => {
+                          var n = vari;
+                          var valor=0;
+                          if(n>0 && n<1000000){
+                            for(x=1;x<n-1;x++){
+                              valor=valor+n;
+                            };
+                            return "Valor introducido "+n+" valor de retorno "+valor;
+                          }else{
+                            return "Introduzca un numero mas pequeño";
+                          };
+                        },
+                    },
+                };
+                return {
+                    result: mapping[problema].fn(),
+                };
+            }
+        }
+
+      };
+      App.init();
+    })();
+  </script>
+</html>
